@@ -151,6 +151,8 @@ find -type f -name "*.dll" -print -delete
 # remove macos executables and libraries
 find -type f -name "*.cmd" -print -delete
 find -type f -name "*.dylib" -print -delete
+rm nb/netbeans.icns
+rm nb/shortcuts_mac.pdf
 # remove NON-Linux libraries
 find -type d -maxdepth 5 -name "*SunOS*" | xargs rm -rfv
 find -type d -maxdepth 5 -name "*MacOSX*" | xargs rm -rfv
