@@ -1,7 +1,7 @@
 Summary:	NetBeans IDE - The Smarter and Faster Way to Code
 Name:		netbeans-ide
 Version:	7.4
-Release:	0.2
+Release:	0.3
 License:	CDDL v1.0 and GPL v2 and others
 Group:		Development/Tools
 # https://netbeans.org/downloads/zip.html
@@ -178,7 +178,7 @@ chmod +x platform/modules/lib/*/linux/libjnidispatch-*.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_bindir},%{_appdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_bindir},%{_appdir}}
 
 # hardlink test
 cp -l LICENSE.txt $RPM_BUILD_ROOT/cp-test && l=l && rm -f $RPM_BUILD_ROOT/cp-test
@@ -187,8 +187,8 @@ cp -a$l . $RPM_BUILD_ROOT%{_appdir}
 # move conf file to etc
 for a in $RPM_BUILD_ROOT%{_appdir}/etc/*; do
 	f=${a##*/}
-	mv $a $RPM_BUILD_ROOT%{_sysconfdir}
-	ln -s %{_sysconfdir}/$a $RPM_BUILD_ROOT%{_appdir}/etc
+	mv $a $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+	ln -s %{_sysconfdir}/%{name}/$f $RPM_BUILD_ROOT%{_appdir}/etc
 done
 
 # install executable
@@ -204,9 +204,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.html CREDITS.html LICENSE.txt THIRDPARTYLICENSE.txt
 %defattr(-,root,root,755)
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/netbeans.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/netbeans.clusters
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/netbeans.import
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/netbeans.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/netbeans.clusters
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/netbeans.import
 %attr(755,root,root) %{_bindir}/netbeans
 %dir %{_appdir}
 %{_appdir}/netbeans.css
