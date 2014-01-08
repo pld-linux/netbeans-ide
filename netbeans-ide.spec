@@ -187,6 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/netbeans.import
 %attr(755,root,root) %{_bindir}/netbeans
 %dir %{_appdir}
+%{_appdir}/netbeans.css
 %{_appdir}/bin
 %{_appdir}/etc
 %{_appdir}/harness
