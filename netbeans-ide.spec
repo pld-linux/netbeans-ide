@@ -9,11 +9,13 @@ Source0:	http://download.netbeans.org/netbeans/%{version}/final/zip/netbeans-%{v
 # NoSource0-md5:	c78db3817710d8c1639664d212b505ce
 # NoSource, because huge download
 NoSource:	0
+Source1:	netbeans.desktop
 URL:		https://netbeans.org/features/
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
+Requires:	desktop-file-utils
 Requires:	jre >= 1.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -179,7 +181,8 @@ chmod +x platform/modules/lib/*/linux/libjnidispatch-*.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_bindir},%{_appdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_bindir},%{_desktopdir},%{_pixmapsdir},%{_appdir}}
+
 
 # hardlink test
 cp -l LICENSE.txt $RPM_BUILD_ROOT/cp-test && l=l && rm -f $RPM_BUILD_ROOT/cp-test
@@ -195,11 +198,20 @@ done
 # install executable
 ln -sf %{_appdir}/bin/netbeans $RPM_BUILD_ROOT%{_bindir}/netbeans
 
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+cp -p nb/netbeans.png $RPM_BUILD_ROOT%{_pixmapsdir}/netbeans.png
+
 # documenation
 %{__rm} $RPM_BUILD_ROOT%{_appdir}/{README.html,CREDITS.html,LICENSE.txt,THIRDPARTYLICENSE.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_desktop_database
+
+%postun
+%update_desktop_database
 
 %files
 %defattr(644,root,root,755)
@@ -210,6 +222,8 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/netbeans.clusters
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/netbeans.import
 %attr(755,root,root) %{_bindir}/netbeans
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/netbeans.png
 %dir %{_appdir}
 %{_appdir}/netbeans.css
 %{_appdir}/bin

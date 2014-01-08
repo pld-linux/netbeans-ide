@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Netbeans
+GenericName=Netbeans IDE
+Comment=Powerful Java IDE from SUN
+Exec=netbeans
+Icon=netbeans
+Terminal=false
+Type=Application
+Encoding=UTF-8
