@@ -1,13 +1,11 @@
-# TODO
-# - split to subpackages if possible? Java SE, Java EE, C/C++, PHP
 Summary:	NetBeans IDE - The Smarter and Faster Way to Code
 Name:		netbeans-ide
 Version:	7.4
-Release:	0.1
+Release:	0.2
 License:	CDDL v1.0 and GPL v2 and others
 Group:		Development/Tools
 # https://netbeans.org/downloads/zip.html
-Source0:	http://download.netbeans.org/netbeans/7.4/final/zip/netbeans-%{version}-201310111528.zip
+Source0:	http://download.netbeans.org/netbeans/%{version}/final/zip/netbeans-%{version}-201310111528.zip
 # NoSource0-md5:	c78db3817710d8c1639664d212b505ce
 # NoSource, because huge download
 NoSource:	0
@@ -35,6 +33,9 @@ Summary:	NetBeans Java development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-websvc = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description javase
 This package contains the Java related parts of NetBeans.
@@ -48,10 +49,13 @@ Requires:	%{name} = %{version}-%{release}
 This package contains the C++ related parts of NetBeans.
 
 %package javacard
-Summary:	NetBeans C++ development
+Summary:	NetBeans Javacard development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-javase = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description javacard
 This package contains the Javacard related parts of NetBeans.
@@ -68,6 +72,9 @@ This package contains the Ruby related parts of NetBeans.
 Summary:	NetBeans Groovy development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description groovy
 This package contains the Groovy related parts of NetBeans.
@@ -76,6 +83,9 @@ This package contains the Groovy related parts of NetBeans.
 Summary:	NetBeans PHP development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description php
 This package contains the PHP related parts of NetBeans.
@@ -85,6 +95,9 @@ Summary:	NetBeans Java Mobile development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-javase = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description mobile
 This package contains the Java Mobile related parts of NetBeans.
@@ -95,6 +108,9 @@ Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-javase = %{version}-%{release}
 Requires:	%{name}-mobile = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description java
 This package contains the Java Enterprise related parts of NetBeans.
@@ -103,6 +119,9 @@ This package contains the Java Enterprise related parts of NetBeans.
 Summary:	NetBeans websvccommon
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description websvc
 This package contains the websvccommon related parts of Netbeans
@@ -111,6 +130,9 @@ This package contains the websvccommon related parts of Netbeans
 Summary:	NetBeans javafx
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description javafx
 This package contains the javafx related parts of Netbeans
