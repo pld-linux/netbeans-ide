@@ -83,6 +83,7 @@ This package contains the Groovy related parts of NetBeans.
 Summary:	NetBeans PHP development
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-websvc = %{version}-%{release}
 %if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
 %endif
