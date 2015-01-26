@@ -1,7 +1,7 @@
 Summary:	NetBeans IDE - The Smarter and Faster Way to Code
 Name:		netbeans-ide
 Version:	8.0.2
-Release:	0.1
+Release:	0.2
 License:	CDDL v1.0 and GPL v2 and others
 Group:		Development/Tools
 # https://netbeans.org/downloads/zip.html
@@ -10,10 +10,12 @@ Source0:	http://download.netbeans.org/netbeans/%{version}/final/zip/netbeans-%{v
 # NoSource, because huge download and package not finished yet
 NoSource:	0
 Source1:	netbeans.desktop
+Patch0:		awk.patch
 URL:		https://netbeans.org/features/
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	desktop-file-utils
 Requires:	jre >= 1.7
@@ -143,6 +145,7 @@ This package contains the javafx related parts of Netbeans
 %prep
 %setup -qc
 mv netbeans/* .; rmdir netbeans
+%patch0 -p1
 
 # remove windows executables and libraries
 find -type f -name "*.exe" -print -delete
