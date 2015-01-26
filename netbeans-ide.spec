@@ -1,13 +1,13 @@
 Summary:	NetBeans IDE - The Smarter and Faster Way to Code
 Name:		netbeans-ide
-Version:	7.4
-Release:	0.3
+Version:	8.0.2
+Release:	0.1
 License:	CDDL v1.0 and GPL v2 and others
 Group:		Development/Tools
 # https://netbeans.org/downloads/zip.html
-Source0:	http://download.netbeans.org/netbeans/%{version}/final/zip/netbeans-%{version}-201310111528.zip
-# NoSource0-md5:	c78db3817710d8c1639664d212b505ce
-# NoSource, because huge download
+Source0:	http://download.netbeans.org/netbeans/%{version}/final/zip/netbeans-%{version}-201411181905.zip
+# NoSource0-md5:	9c7a9c16644d3508068ad47d4f467c4f
+# NoSource, because huge download and package not finished yet
 NoSource:	0
 Source1:	netbeans.desktop
 URL:		https://netbeans.org/features/
@@ -160,6 +160,7 @@ find -type d -maxdepth 5 -name "*Windows*" | xargs rm -rfv
 find -type d -maxdepth 5 -name "*windows*" | xargs rm -rfv
 find -type d -maxdepth 5 -name "*hpux*" | xargs rm -rfv
 find -type d -maxdepth 5 -name "*solaris*" | xargs rm -rfv
+find -type d -maxdepth 5 -name "*Linux-arm*" | xargs rm -rfv
 # Worround
 rm -r profiler/lib/deployed/
 
